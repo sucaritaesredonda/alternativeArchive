@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kaleidoscopio</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=VT323" />
+    <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet'>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+    
+    <script src="./script.js"></script>
+    <!-- import the latest version of hydra synth-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+    <script src="../p5.min.js"></script>
+    <!-- <script src="../addons/p5.sound.js"></script> -->
+    <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+</head>
+  </head>
+  <body>
+
+    
+    <header>
+        <div class="header__navigation">
+      
+      <a href="./cinco.html"><p id="p">GO BACK</p></a>
+      <div id="p">
+        <p onclick="playAud()" >PLAY TO SOUND</p>
+      </div>
+      <a href="./ocho.html"><p id="p">GO FORWARD</p></a>
+          
+      
+      </div>
+      </header>
+
+      <audio autoplay loop id="miaudio">
+        <source src="./canciones/Monstrua Valentine (1).wav">
+      </audio>
+    
+    
+    
+    <script> 
+      let vid = document.getElementById("miaudio"); 
+      
+      function playAud() { 
+        vid.play(); 
+      } 
+      
+      function pauseAud() { 
+        vid.pause(); 
+      } 
+      </script> 
+
+    
+
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;z-index:3"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+    <canvas >
+    <script>
+      // create a new hydra-synth instance
+      var hydra = new Hydra({
+        canvas: document.getElementById("myCanvas"),
+        detectAudio: false,
+        enableStreamCapture: false,
+      })
+
+       c = ()=>mouse.y*0.003;
+d = ()=>a.fft[0]
+e = ()=>Math.random()
+f = ()=>14+Math.sin(time)*2
+g = ()=>14-Math.sin(time)*2
+
+s1.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDRkOWhiaWs4M3AwNzJrbDdheXRpMWxuYXVjc2trNTV6d3psMHA0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VnsqFdtT11YYhks4ay/giphy.mp4")
+src(s1)
+//.repeat()
+  .scrollY(c)
+.hue(f)
+  .out(o1)
+
+s0.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGUwbXdobTF6Zm9sazNlb3FydmZna3NqNXU5N25lamZrdG1hZ3Y1ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TPMg4oZg87vkKDxT8C/giphy.mp4")
+src(s0).scrollX(c)
+  .repeat(3,e).hue(f)
+  .layer(src(o3).luma(0.1))
+.layer(src(o2).luma(0.1))
+  .layer(src(o1).luma(0.1))
+  //.invert([0,1].smooth(0.2))
+  .out(o0)
+
+s3.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHJtM2UzbWw1ZjlwMWd4ZXpxYzlkdDRibnJzdGJzaXljZGc2cjc0cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4nLkWjCOhde9d1F5J/giphy.mp4")
+src(s3).mult(shape(4,0.6).repeat(3))
+  .scrollY(c)
+  .colorama(12)
+  .out(o3)
+
+s2.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3lweDBwMjlqcDhzNnVtOXR6MWtubWtscmNsNzQwNXRpdHpsY21qaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NUeXfe0d0QGmxWGcUr/giphy.mp4")
+src(s2).mult(shape(4,0.6).repeat(3))
+  .hue(f).scrollX(0.25).scrollY(f)
+  .colorama(30)
+  .out(o2)
+
+    </script>
+    </canvas>
+
+
+  </body>
+</html>

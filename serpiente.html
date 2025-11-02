@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Pixelify+Sans:wght@400..700&family=VT323&display=swap" rel="stylesheet">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+        <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+    
+    <script src="./script.js"></script>
+    <!-- import the latest version of hydra synth-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+    <script src="../p5.min.js"></script>
+    <!-- <script src="../addons/p5.sound.js"></script> -->
+    <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>SERPIENTE</title>
+
+    <style>
+              canvas{
+        z-index: -1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        opacity: 1;
+      }
+
+            .header__navigation {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        list-style: none;
+        justify-content: space-between;
+        z-index: 1; 
+    }
+          p{
+        font-family: "VT323", monospace;
+font-size: 35px;
+      }
+      .vt323-regular {
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  a{
+    text-decoration: none;
+    color: aliceblue;
+  }
+     #p{
+      color: aliceblue;
+        text-shadow: 2px 2px black , 0 0 25px black;
+        cursor: pointer;
+        font-size: 40px;
+        font-family: "VT323", monospace;
+        position: static;
+      }
+
+          #bottom-righ{
+            color: aliceblue;
+      text-shadow: 2px 2px black , 0 0 25px black;
+      cursor: pointer;
+      font-size: 40px;
+      font-family: "VT323", monospace;
+    }
+
+    
+            button{
+        align-items: center;
+        align-content: center;
+        align-content: center;
+        padding: initial;
+        align-items: center;
+        margin: 20px;
+     
+          background: #d4d9d62d;
+          border-bottom: 6px inset rgba(0,0,0,.5);
+          border-left: 6px inset rgba(0,0,0,.5);
+          border-right: 6px inset rgba(255,255,255,.5);
+          border-top: 6px inset rgba(255, 255, 255, 0.5);
+          box-sizing: border-box;
+          
+          cursor: pointer;
+          display: inline-block;
+          font-size: 2.2rem;
+          margin: 1rem;
+          min-width: 200px;
+          padding: .5rem;
+          text-transform: uppercase;
+          text-emphasis-color: white;
+          width: auto;
+          font-family: 'VT323';
+          font-weight: bold;
+        
+          color: antiquewhite;
+        margin-left: 0px;
+    
+      }
+
+      .content { 
+          position: absolute; 
+          top: 50%; 
+          left: 50%; 
+          transform: translate(-50%, -50%); 
+          width: 1000px; 
+          height: 500px; 
+          text-align: center; 
+          background-color: #e8eae6; 
+          color: blue;
+          box-sizing: border-box; 
+          padding: 10px; 
+          z-index: 100; 
+          display: none; 
+          font-family: "VT323", monospace;
+          
+          /*to hide popup initially*/ 
+      } 
+        
+      .close-btn { 
+          position: absolute; 
+          right: 20px; 
+          top: 15px; 
+          background-color: black; 
+          color: white; 
+          border-radius: 50%; 
+          padding: 4px;
+          font-family: "VT323", monospace;
+font-size: 20px;
+      }
+    </style>
+    
+</head>
+<body>
+
+
+  <header>
+        <div class="header__navigation">
+      
+      <button id="mo" onclick="togglePopup()">ABOUT</button> 
+       <audio id="audio" src="./serpiente.wav"></audio>
+      <div id="bottom-right" onclick="togglePlayPause()"><p id="p">PLAY TO SOUND</p></div>
+      <a href="./index.html"><p id="p">GO BACK</p></a>
+          
+      
+      </div>
+
+  
+<!-- div containing the popup -->
+<div class="content" id="message-popup"> 
+  <div onclick="togglePopup()" class="close-btn">×</div> 
+  <h3>Correspondencia</h3> 
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p> 
+</div> 
+
+<!-- NEW popup for START PAGE -->
+<div class="content" id="start-popup"> 
+  <div onclick="toggleStartPopup()" class="close-btn">×</div> 
+  <h3>Welcome to Start Page</h3> 
+  <p>This is the start page popup content. You can put anything you want here.</p> 
+</div> 
+
+
+<script type="text/javascript"> 
+  // Function to show/hide the message popup
+  function togglePopup() { 
+    $("#message-popup").toggle(); 
+  } 
+
+  // Function to show/hide the start page popup
+  function toggleStartPopup() { 
+    $("#start-popup").toggle(); 
+  } 
+</script>
+
+
+<script>
+const playSound = function() {
+    let element = document.createElement('div');
+    element.setAttribute('style', 'display: none');
+    element.innerHTML = `
+      <audio autoplay loop>
+        <source src="./serpiente.wav">
+      </audio>
+    `;
+    document.body.appendChild(element);
+    document.removeEventListener('click', playSound);
+}
+
+document.addEventListener('click', playSound);
+
+</script>
+
+
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;z-index:3"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+    <canvas >
+    <script>
+      // create a new hydra-synth instance
+      var hydra = new Hydra({
+        canvas: document.getElementById("myCanvas"),
+        detectAudio: false,
+        enableStreamCapture: false,
+      })
+
+       c = ()=>mouse.y*0.003;
+d = ()=>a.fft[0]
+e = ()=>Math.random()
+f = ()=>14+Math.sin(time)*2
+g = ()=>14-Math.sin(time)*2
+
+s1.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDRkOWhiaWs4M3AwNzJrbDdheXRpMWxuYXVjc2trNTV6d3psMHA0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VnsqFdtT11YYhks4ay/giphy.mp4")
+src(s1)
+//.repeat()
+  .scrollY(c)
+.hue(f)
+  .out(o1)
+
+s0.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGUwbXdobTF6Zm9sazNlb3FydmZna3NqNXU5N25lamZrdG1hZ3Y1ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TPMg4oZg87vkKDxT8C/giphy.mp4")
+src(s0).scrollX(c)
+  .repeat(3,e).hue(f)
+  .layer(src(o3).luma(0.1))
+.layer(src(o2).luma(0.1))
+  .layer(src(o1).luma(0.1))
+  //.invert([0,1].smooth(0.2))
+  .out(o0)
+
+s3.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHJtM2UzbWw1ZjlwMWd4ZXpxYzlkdDRibnJzdGJzaXljZGc2cjc0cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4nLkWjCOhde9d1F5J/giphy.mp4")
+src(s3).mult(shape(4,0.6).repeat(3))
+  .scrollY(c)
+  .colorama(12)
+  .out(o3)
+
+s2.initVideo("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3lweDBwMjlqcDhzNnVtOXR6MWtubWtscmNsNzQwNXRpdHpsY21qaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NUeXfe0d0QGmxWGcUr/giphy.mp4")
+src(s2).mult(shape(4,0.6).repeat(3))
+  .hue(f).scrollX(0.25).scrollY(f)
+  .colorama(30)
+  .out(o2)
+
+    </script>
+    </canvas>
+
+</body>
+</html>
